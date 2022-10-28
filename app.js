@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+  //intialize variables
   var meats = 0;
   var swords = 0;
   var money = 0;
@@ -8,19 +10,28 @@ $(document).ready(function () {
   var swordPrice = 50;
   var meatsPrice = 1;
   var menu;
+  var autoMeatsPlusUpgCost;
 
+
+  // gives 1 meat every second per each minion
   setInterval(function(){
+    if (autoMeatsPlus > 0){
     meats += autoMeatsPlus;
     updateInventory();
     updateMarket();
+    }
   }, 1000);
 
+
+  //Attacks and gives you meat.
   $("#attack").click(function () {
     meats += meatPlus;
     updateInventory();
     updateMarket();
   });
 
+
+  // Sell functions
   $("#sell1").click(function(){
     meats--;
     money += meatsPrice;
@@ -42,23 +53,32 @@ $(document).ready(function () {
     updateMarket();
   });
 
+  //Buys a minion.
   $("#autoAttacker").click(function(){
     money -= autoAttackerPrice;
     autoMeatsPlus++;
     autoAttackerPrice *=4;
     updateInventory();
     updateMarket();
+    $("#autoAttacker").html("Buy 1 minion for $" + autoAttackerPrice);
   });
 
+  //Buys a sword upgrade.
   $("#buySword").click(function(){
+    if(money >= swordPrice){
     money -= swordPrice;
     swords++;
     swordPrice *= 2;
     updateInventory();
     updateMarket();
     updateSword();
+    $("#buySword").html("Buy Sword Upgrade $" + swordPrice);
+  } else
+    document.getElementById("moneys").innerHTML ='You dont have enough to purchase a sword!';
   });
 
+
+  // visit marketplace and return to main menu functions
   $("#visit").click(function () {
     menu = switchMenu("marketplace");
     updateMarket();
@@ -66,11 +86,18 @@ $(document).ready(function () {
 
   $("#return").click(function () {
     menu = switchMenu("main");
+    document.getElementById("moneys").innerHTML = "";
   });
 
+  // add upgrade functionality to minion, doesnt work atm
+  function updradeMinion(){
+    autoMeatsPlus *= 2;
+    autoMeatsPlusUpgCost *=4;
+  }
+
+  //Updates inventory
   function updateInventory() {
     $("#money").html("Money: $" + money);
-    $("#buySword").html("Buy Sword Upgrade " + swordPrice);
 
     if (meats == 1) {
       $("#meats").html("You now own " + meats + " meats.");
@@ -103,6 +130,7 @@ $(document).ready(function () {
     }
   }
 
+  //Updates sword damage.
   function updateSword(){
     var pow = 2;
     pow = pow++;
@@ -110,6 +138,7 @@ $(document).ready(function () {
       console.log(meatPlus);
     }
     
+  //Updates market
   function updateMarket() {
     if (meats > 0) {
       $("#sellAll").css("display", "block");
@@ -134,10 +163,10 @@ $(document).ready(function () {
     }
 
     if(money >= swordPrice && swords < 7){
-      $("#buySword").css("display", "block");
+      $("#buySword").css({"display": "block", "background-color": "white"});
     }else
     {
-      $("#buySword").css("display", "none");
+      $("#buySword").css("background-color", "grey");
     }
 
   }
