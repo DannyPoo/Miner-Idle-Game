@@ -81,6 +81,15 @@ $(document).ready(function () {
       $("#swords").html("You now own " + swords + " swords.");
     }
   }
+  function changeAttack(){
+    if (swords == 1){
+      meatPlus = meatPlus * 2;
+      console.log(meatPlus);
+    }else{
+      meatPlus = meatPlus * swords;
+      console.log(meatPlus);
+    }
+  }
 
   function changeMarket() {
     if (meats > 0) {
@@ -98,13 +107,6 @@ $(document).ready(function () {
     } else {
       $("#sell10").css("display", "none");
     }
-    
-    function changeAttack(){
-      if (swords > 1){
-        meatPlus * swords;
-      }
-    }
-
     if(money >= autoAttackerPrice){
       $("#autoAttacker").css("display", "block");
     }else
