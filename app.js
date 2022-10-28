@@ -17,25 +17,26 @@ $(document).ready(function () {
   var isDone = false;
   var inflationNum = 100;
   var autoSellPrice = 100;
+  var isUpgraded = false;
 
 
   // gives 1 meat every second per each minion
-  setInterval(function(){
-    if (autoMeatsPlus > 0){
-    checkTotalMeats(totalMeats, totalMeats + meatPlus);
-    meats += autoMeatsPlus;
-    totalMeats += autoMeatsPlus;
-    updateInventory();
-    updateMarket();
-    console.log(totalMeats);
+  setInterval(function () {
+    if (autoMeatsPlus > 0) {
+      checkTotalMeats(totalMeats, totalMeats + meatPlus);
+      meats += autoMeatsPlus;
+      totalMeats += autoMeatsPlus;
+      updateInventory();
+      updateMarket();
+      console.log(totalMeats);
     }
   }, 1000);
 
-  function checkTotalMeats(pretotalMeats, postTotalMeats){
-    if(pretotalMeats < inflationNum && postTotalMeats >= inflationNum){
-      meatsPrice/=2;
+  function checkTotalMeats(pretotalMeats, postTotalMeats) {
+    if (pretotalMeats < inflationNum && postTotalMeats >= inflationNum) {
+      meatsPrice /= 2;
       console.log(meatsPrice);
-     }
+    }
   }
 
   //Attacks and gives you meat.
@@ -50,21 +51,21 @@ $(document).ready(function () {
 
 
   // Sell functions
-  $("#sell1").click(function(){
-    meats --;
+  $("#sell1").click(function () {
+    meats--;
     money += meatsPrice;
     updateInventory();
     updateMarket();
   });
 
-  $("#sell10").click(function(){
-    meats-=10;
-    money += meatsPrice *10;
+  $("#sell10").click(function () {
+    meats -= 10;
+    money += meatsPrice * 10;
     updateInventory();
     updateMarket();
   });
 
-  $("#sellAll").click(function(){
+  $("#sellAll").click(function () {
     money += meatsPrice * meats;
     meats = 0;
     updateInventory();
@@ -72,28 +73,30 @@ $(document).ready(function () {
   });
 
   //Buys a minion.
-  $("#autoAttacker").click(function(){
-    money -= autoAttackerPrice;
-    autoMeatsPlus++;
-    autoAttackerPrice *=4;
-    updateInventory();
-    updateMarket();
-    $("#autoAttacker").html("Buy 1 minion for $" + autoAttackerPrice);
+  $("#autoAttacker").click(function () {
+    if (money >= autoAttackerPrice) {
+      money -= autoAttackerPrice;
+      autoMeatsPlus++;
+      autoAttackerPrice *= 4;
+      updateInventory();
+      updateMarket();
+      $("#autoAttacker").html("Buy 1 minion for $" + autoAttackerPrice);
+    }
   });
 
   //Buys a sword upgrade.
-  $("#buySword").click(function(){
-    if(money >= swordPrice && swords < totalSwordUpgrades){
-    money -= swordPrice;
-    swords++;
-    swordPrice *= 2;
-    updateInventory();
-    updateMarket();
-    updateSword();
-    $("#buySword").html("Buy Sword Upgrade $" + swordPrice);
-  } else {
-    document.getElementById("moneys").innerHTML ='You dont have enough to purchase a sword!';
-  }
+  $("#buySword").click(function () {
+    if (money >= swordPrice && swords < totalSwordUpgrades) {
+      money -= swordPrice;
+      swords++;
+      swordPrice *= 2;
+      updateInventory();
+      updateMarket();
+      updateSword();
+      $("#buySword").html("Buy Sword Upgrade $" + swordPrice);
+    } else {
+      document.getElementById("moneys").innerHTML = 'You dont have enough to purchase a sword!';
+    }
   });
 
 
@@ -109,17 +112,23 @@ $(document).ready(function () {
   });
 
   // add upgrade functionality to minion, doesnt work atm
-  $("#upgradeMinion").click(function (){
-    if(money >= autoMeatsPlusUpgCost){
-    money -= autoMeatsPlusUpgCost;
-    autoMeatsPlus *= 2;
-    autoMeatsPlusUpgCost *=4;
-    $("#upgradeMinion").html("Buy minion upgrade $ " + autoMeatsPlusUpgCost);
+  $("#upgradeMinion").click(function () {
+    if (money >= autoMeatsPlusUpgCost) {
+      money -= autoMeatsPlusUpgCost;
+      autoMeatsPlus *= 2;
+      autoMeatsPlusUpgCost *= 4;
+      $("#upgradeMinion").html("Buy minion upgrade $ " + autoMeatsPlusUpgCost);
     }
   });
 
-  $("#autoSellUpgrade").click(function (){
-    money -= autoSellPrice;
+  $("#autoSellUpgrade").click(function () {
+    if (money >= autoSellPrice && !isUpgraded) {
+      money -= autoSellPrice;
+      isUpgraded = true;
+    } else {
+      console.log("You alreay have this upgrade!")
+
+    }
   });
 
   //Updates inventory
@@ -133,26 +142,26 @@ $(document).ready(function () {
     }
     if (swords == 1) {
       $("#swords").html("You now own a bronze sword.");
-      
-    }else if(swords == 2){
+
+    } else if (swords == 2) {
       $("#swords").html("You now own a iron sword.");
     }
-    else if(swords == 3){
+    else if (swords == 3) {
       $("#swords").html("You now own an gold sword.");
     }
-    else if(swords == 4){
+    else if (swords == 4) {
       $("#swords").html("You now own a steel sword.");
     }
-    else if(swords == 5){
+    else if (swords == 5) {
       $("#swords").html("You now own an adamantite sword.");
     }
-    else if(swords == 6){
+    else if (swords == 6) {
       $("#swords").html("You now own a rune sword.");
     }
-    else if(swords == 7){
+    else if (swords == 7) {
       $("#swords").html("You now own a dragon sword.");
     }
-    else if(swords == 8){
+    else if (swords == 8) {
       $("#swords").html("You now own a god sword.");
     }
     else {
@@ -162,24 +171,24 @@ $(document).ready(function () {
 
   //Updates attack based on achievement level.
 
-function updateAttack(){
-    if(!isDone && totalMeats > 500){
+  function updateAttack() {
+    if (!isDone && totalMeats > 500) {
       clickAttack += 5;
       console.log(meatPlus)
       isDone = true;
     }
-    else{
+    else {
     }
   }
 
   //Updates sword damage.
-  function updateSword(){
+  function updateSword() {
     var pow = 2;
     pow = pow++;
-      meatPlus = Math.pow(swords + 1 + clickAttack, pow);
-      console.log(meatPlus);
-    }
-    
+    meatPlus = Math.pow(swords + 1 + clickAttack, pow);
+    console.log(meatPlus);
+  }
+
   //Updates market
   function updateMarket() {
     if (meats > 0) {
@@ -197,29 +206,27 @@ function updateAttack(){
     } else {
       $("#sell10").css("display", "none");
     }
-    if(money >= autoAttackerPrice){
+    if (money >= autoAttackerPrice) {
       $("#autoAttacker").css("display", "block");
-    }else
-    {
-      $("#autoAttacker").css("display", "none");
+    } else {
+      $("#autoAttacker").css("background-color", "grey");
     }
-    if(money >= swordPrice && swords < totalSwordUpgrades){
-      $("#buySword").css({"display": "block", "background-color": "white"});
-    }else if( money < swordPrice && swords < totalSwordUpgrades)
-    {
+    if (money >= swordPrice && swords < totalSwordUpgrades) {
+      $("#buySword").css({ "display": "block", "background-color": "white" });
+    } else if (money < swordPrice && swords < totalSwordUpgrades) {
       $("#buySword").css("background-color", "grey");
-    }else{
+    } else {
       $("#buySword").css("display", "none");
-    } 
-    if (money >= autoMeatsPlusUpgCost && autoMeatsPlus > 0){
-      $("#upgradeMinion").css("display", "block");
-    }else{
-      $("#upgradeMinion").css("display", "none");
     }
-    if (money >= autoSellPrice && autoMeatsPlus > 0){
+    if (money >= autoMeatsPlusUpgCost && autoMeatsPlus > 0) {
+      $("#upgradeMinion").css("display", "block");
+    } else {
+      $("#upgradeMinion").css("background-color", "grey");
+    }
+    if (money >= autoSellPrice && autoMeatsPlus > 0) {
       $("#autoSellUpgrade").css("display", "block");
-    }else{
-      $("#autoSellUpgrade").css("display", "none");
+    } else {
+      $("#autoSellUpgrade").css("background-color", "grey");
     }
 
   }
