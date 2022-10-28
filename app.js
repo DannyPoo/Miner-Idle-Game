@@ -54,6 +54,7 @@ $(document).ready(function () {
     swords++;
     changeInventory();
     changeMarket();
+    changeAttack();
   });
 
   $("#visit").click(function () {
@@ -96,6 +97,12 @@ $(document).ready(function () {
       $("#sell10").css("display", "block");
     } else {
       $("#sell10").css("display", "none");
+    }
+    
+    function changeAttack(){
+      if (swords > 1){
+        meatPlus * swords;
+      }
     }
 
     if(money >= autoAttackerPrice){
