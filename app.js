@@ -11,6 +11,7 @@ $(document).ready(function () {
   var meatsPrice = 1;
   var menu;
   var autoMeatsPlusUpgCost;
+  var totalSwordUpgrades = 8;
 
 
   // gives 1 meat every second per each minion
@@ -65,7 +66,7 @@ $(document).ready(function () {
 
   //Buys a sword upgrade.
   $("#buySword").click(function(){
-    if(money >= swordPrice){
+    if(money >= swordPrice && swords < totalSwordUpgrades){
     money -= swordPrice;
     swords++;
     swordPrice *= 2;
@@ -73,8 +74,9 @@ $(document).ready(function () {
     updateMarket();
     updateSword();
     $("#buySword").html("Buy Sword Upgrade $" + swordPrice);
-  } else
+  } else {
     document.getElementById("moneys").innerHTML ='You dont have enough to purchase a sword!';
+  }
   });
 
 
@@ -125,6 +127,9 @@ $(document).ready(function () {
     else if(swords == 7){
       $("#swords").html("You now own a dragon sword.");
     }
+    else if(swords == 8){
+      $("#swords").html("You now own a god sword.");
+    }
     else {
       $("#swords").html("You now own " + swords + " swords.");
     }
@@ -162,11 +167,13 @@ $(document).ready(function () {
       $("#autoAttacker").css("display", "none");
     }
 
-    if(money >= swordPrice && swords < 7){
+    if(money >= swordPrice && swords < totalSwordUpgrades){
       $("#buySword").css({"display": "block", "background-color": "white"});
-    }else
+    }else if( money < swordPrice && swords < totalSwordUpgrades)
     {
       $("#buySword").css("background-color", "grey");
+    }else{
+      $("#buySword").css("display", "none");
     }
 
   }
