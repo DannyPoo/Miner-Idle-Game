@@ -15,7 +15,7 @@
 
 .upgrades , .items button{
   display:grid;
-  grid-template-columns: repeat(1, 72px);
+  grid-template-columns: repeat(1, 98px);
   margin-bottom: 10px;
 }
 
