@@ -81,16 +81,11 @@ $(document).ready(function () {
       $("#swords").html("You now own " + swords + " swords.");
     }
   }
-  
+
   function changeAttack(){
-    if (swords == 1){
-      meatPlus = meatPlus * 2;
-      console.log(meatPlus);
-    }else{
-      meatPlus = meatPlus * swords;
+      meatPlus = Math.floor(Math.log(swords)+2);
       console.log(meatPlus);
     }
-  }
 
   function changeMarket() {
     if (meats > 0) {
