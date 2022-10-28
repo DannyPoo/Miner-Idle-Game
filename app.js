@@ -11,83 +11,106 @@ $(document).ready(function () {
 
   setInterval(function(){
     meats += autoMeatsPlus;
-    changeInventory();
-    changeMarket();
+    updateInventory();
+    updateMarket();
   }, 1000);
 
   $("#attack").click(function () {
     meats += meatPlus;
-    changeInventory();
-    changeMarket();
+    updateInventory();
+    updateMarket();
   });
 
   $("#sell1").click(function(){
     meats--;
     money += meatsPrice;
-    changeInventory();
-    changeMarket();
+    updateInventory();
+    updateMarket();
   });
 
   $("#sell10").click(function(){
     meats-=10;
     money += meatsPrice *10;
-    changeInventory();
-    changeMarket();
+    updateInventory();
+    updateMarket();
   });
 
   $("#sellAll").click(function(){
     money += meatsPrice * meats;
     meats = 0;
-    changeInventory();
-    changeMarket();
+    updateInventory();
+    updateMarket();
   });
 
   $("#autoAttacker").click(function(){
     money -= autoAttackerPrice;
     autoMeatsPlus++;
-    changeInventory();
-    changeMarket();
+    autoAttackerPrice *=4;
+    updateInventory();
+    updateMarket();
   });
 
   $("#buySword").click(function(){
     money -= swordPrice;
     swords++;
-    changeInventory();
-    changeMarket();
-    changeAttack();
+    swordPrice *= 2;
+    updateInventory();
+    updateMarket();
+    updateSword();
   });
 
   $("#visit").click(function () {
     menu = switchMenu("marketplace");
-    changeMarket();
+    updateMarket();
   });
 
   $("#return").click(function () {
     menu = switchMenu("main");
   });
 
-
-  function changeInventory() {
+  function updateInventory() {
     $("#money").html("Money: $" + money);
+    $("#buySword").html("Buy Sword Upgrade " + swordPrice);
 
     if (meats == 1) {
       $("#meats").html("You now own " + meats + " meats.");
     } else {
       $("#meats").html("You now own " + meats + " meats.");
     }
-    if (swords > 0) {
-      $("#swords").html("You now own " + swords + " swords.");
-    } else {
+    if (swords == 1) {
+      $("#swords").html("You now own a bronze sword.");
+      
+    }else if(swords == 2){
+      $("#swords").html("You now own a iron sword.");
+    }
+    else if(swords == 3){
+      $("#swords").html("You now own an gold sword.");
+    }
+    else if(swords == 4){
+      $("#swords").html("You now own a steel sword.");
+    }
+    else if(swords == 5){
+      $("#swords").html("You now own an adamantite sword.");
+    }
+    else if(swords == 6){
+      $("#swords").html("You now own a rune sword.");
+    }
+    else if(swords == 7){
+      $("#swords").html("You now own a dragon sword.");
+    }
+    else {
       $("#swords").html("You now own " + swords + " swords.");
     }
   }
 
-  function changeAttack(){
-      meatPlus = Math.floor(Math.log(swords)+2);
+  function updateSword(){
+    var pow = 2;
+    pow = pow++;
+      meatPlus = Math.pow(swords + 1, pow);
       console.log(meatPlus);
     }
-
-  function changeMarket() {
+    
+  function updateMarket() {
     if (meats > 0) {
       $("#sellAll").css("display", "block");
     } else {
@@ -110,7 +133,7 @@ $(document).ready(function () {
       $("#autoAttacker").css("display", "none");
     }
 
-    if(money >= swordPrice){
+    if(money >= swordPrice && swords < 7){
       $("#buySword").css("display", "block");
     }else
     {
