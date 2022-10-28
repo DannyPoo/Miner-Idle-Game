@@ -81,6 +81,7 @@ $(document).ready(function () {
       $("#swords").html("You now own " + swords + " swords.");
     }
   }
+  
   function changeAttack(){
     if (swords == 1){
       meatPlus = meatPlus * 2;
