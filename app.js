@@ -200,17 +200,17 @@ $(document).ready(function () {
   //Updates market
   function updateMarket() {
     if (meats > 0) {
-      $("#sellAll").css("display", "block");
+      $("#sellAll").css("display", "inline-block");
     } else {
       $("#sellAll").css("display", "none");
     }
     if (meats >= 1) {
-      $("#sell1").css("display", "block");
+      $("#sell1").css("display", "inline-block");
     } else {
       $("#sell1").css("display", "none");
     }
     if (meats >= 10) {
-      $("#sell10").css("display", "block");
+      $("#sell10").css("display", "inline-block");
     } else {
       $("#sell10").css("display", "none");
     }
