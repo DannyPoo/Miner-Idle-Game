@@ -215,24 +215,24 @@ $(document).ready(function () {
       $("#sell10").css("display", "none");
     }
     if (money >= autoAttackerPrice) {
-      $("#autoAttacker").css({ "display": "block", "background-color": "white" });
+      $("#autoAttacker").css({ "display": "inline-block", "background-color": "purple" });
     } else {
       $("#autoAttacker").css("background-color", "grey");
     }
     if (money >= swordPrice && swords < totalSwordUpgrades) {
-      $("#buySword").css({ "display": "block", "background-color": "white" });
+      $("#buySword").css({ "display": "inline-block", "background-color": "purple"});
     } else if (money < swordPrice && swords < totalSwordUpgrades) {
       $("#buySword").css("background-color", "grey");
     } else {
       $("#buySword").css("display", "none");
     }
     if (money >= autoMeatsPlusUpgCost && autoMeatsPlus > 0) {
-      $("#upgradeMinion").css({ "display": "block", "background-color": "white" });
+      $("#upgradeMinion").css({ "display": "inline-block", "background-color": "purple" });
     } else {
       $("#upgradeMinion").css("background-color", "grey");
     }
     if (money >= autoSellPrice && autoMeatsPlus > 0) {
-      $("#autoSellUpgrade").css({ "display": "block", "background-color": "white" });
+      $("#autoSellUpgrade").css({ "display": "inline-block", "background-color": "purple" });
     } else {
       $("#autoSellUpgrade").css("background-color", "grey");
     }
