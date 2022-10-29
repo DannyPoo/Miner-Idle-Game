@@ -22,9 +22,17 @@ $(document).ready(function () {
 
   // gives 1 meat every second per each minion
   setInterval(function () {
-    if (autoMeatsPlus > 0) {
+    if (autoMeatsPlus > 0 && !isUpgraded) {
       checkTotalMeats(totalMeats, totalMeats + meatPlus);
       meats += autoMeatsPlus;
+      totalMeats += autoMeatsPlus;
+      updateInventory();
+      updateMarket();
+      console.log(totalMeats);
+    }
+    else if (autoMeatsPlus > 0) {
+      checkTotalMeats(totalMeats, totalMeats + meatPlus);
+      money += autoMeatsPlus;
       totalMeats += autoMeatsPlus;
       updateInventory();
       updateMarket();
@@ -207,7 +215,7 @@ $(document).ready(function () {
       $("#sell10").css("display", "none");
     }
     if (money >= autoAttackerPrice) {
-      $("#autoAttacker").css("display", "block");
+      $("#autoAttacker").css({ "display": "block", "background-color": "white" });
     } else {
       $("#autoAttacker").css("background-color", "grey");
     }
@@ -219,12 +227,12 @@ $(document).ready(function () {
       $("#buySword").css("display", "none");
     }
     if (money >= autoMeatsPlusUpgCost && autoMeatsPlus > 0) {
-      $("#upgradeMinion").css("display", "block");
+      $("#upgradeMinion").css({ "display": "block", "background-color": "white" });
     } else {
       $("#upgradeMinion").css("background-color", "grey");
     }
     if (money >= autoSellPrice && autoMeatsPlus > 0) {
-      $("#autoSellUpgrade").css("display", "block");
+      $("#autoSellUpgrade").css({ "display": "block", "background-color": "white" });
     } else {
       $("#autoSellUpgrade").css("background-color", "grey");
     }
