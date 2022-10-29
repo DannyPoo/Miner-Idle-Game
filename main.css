@@ -12,12 +12,14 @@
 }
 * {
   touch-action: manipulation;
+  pointer-events: none;
 }
 #attackchicken{
   display: none;
   visibility: hidden;
 }
 button{
+  pointer-events: auto;
   display: inline-block;
   background-color: #7b38d8;
   border-radius: 10px;
