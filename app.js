@@ -13,7 +13,7 @@ $(document).ready(function () {
   var autoBeefPlusUpgCost = 100;
   var totalSwordUpgrades = 8;
   var clickAttack = 1;
-  var totalbeef = 0;
+  var totalBeef = 0;
   var isDone = false;
   var inflationNum = 100;
   var autoSellPrice = 100;
@@ -24,25 +24,25 @@ $(document).ready(function () {
   // gives 1 beef every second per each minion
   setInterval(function () {
     if (autoBeefPlus > 0 && !isUpgraded) {
-      checkTotalbeef(totalbeef, totalbeef + beefPlus);
+      checktotalBeef(totalBeef, totalBeef + beefPlus);
       beef += autoBeefPlus;
-      totalbeef += autoBeefPlus;
+      totalBeef += autoBeefPlus;
       updateInventory();
       updateMarket();
-      console.log(totalbeef);
+      console.log(totalBeef);
     }
     else if (autoBeefPlus > 0) {
-      checkTotalbeef(totalbeef, totalbeef + beefPlus);
+      checktotalBeef(totalBeef, totalBeef + beefPlus);
       money += autoBeefPlus;
-      totalbeef += autoBeefPlus;
+      totalBeef += autoBeefPlus;
       updateInventory();
       updateMarket();
-      console.log(totalbeef);
+      console.log(totalBeef);
     }
   }, 1000);
 
-  function checkTotalbeef(pretotalbeef, postTotalbeef) {
-    if (pretotalbeef < inflationNum && postTotalbeef >= inflationNum) {
+  function checktotalBeef(preTotalBeef, postTotalBeef) {
+    if (preTotalBeef < inflationNum && postTotalBeef >= inflationNum) {
       beefPrice /= 2;
       console.log(beefPrice);
     }
@@ -50,9 +50,9 @@ $(document).ready(function () {
 
   //Attacks and gives you beef.
   $("#attackcow").click(function () {
-    checkTotalbeef(totalbeef, totalbeef + beefPlus);
+    checktotalBeef(totalBeef, totalBeef + beefPlus);
     beef += beefPlus;
-    totalbeef += beefPlus;
+    totalBeef += beefPlus;
     updateInventory();
     updateMarket();
     updateAttack();
@@ -184,7 +184,7 @@ $(document).ready(function () {
   //Updates attack based on achievement level.
 
   function updateAttack() {
-    if (!isDone && totalbeef > 500) {
+    if (!isDone && totalBeef > 500) {
       clickAttack += 5;
       console.log(beefPlus)
       isDone = true;
