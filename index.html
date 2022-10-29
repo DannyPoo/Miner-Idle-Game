@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <head>
   <title>RPG Hero Idle Game</title>
-  <meta naem="viewport" content="width=device-width, initial scale="> 
-  <link rel="stylesheet" href="main.css">
+  <meta naem="viewport" content="width=device-width, initial scale=" />
+  <link rel="stylesheet" href="main.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="app.js"></script>
 </head>
@@ -10,8 +10,15 @@
   <div class="content">
     <div class="menus">
       <div class="main">
-        <button id="attack">Attack Cow</button>
+        <button id="monsters">Visit Monsters</button>
         <button id="visit">Visit Marketplace</button>
+      </div>
+      <div class="monsterden">
+        <div class="monsters">
+          <button id="attackcow">Attack Cow</button>
+          <button id="attackchicken">Attack Chicken</button>
+        </div>
+        <button class="return">return</button>
       </div>
       <div class="marketplace">
         <div class="sellButtons">
@@ -19,7 +26,7 @@
           <button id="sell10">Sell [10] Meat</button>
           <button id="sellAll">Sell All Meat</button>
         </div>
-        <p id ="moneys"></p>
+        <p id="moneys"></p>
         <div class="upgrades">
           <button id="autoAttacker">Buy [1] Minion $100</button>
           <button id="upgradeMinion">Upgrade Minion Attack $100</button>
@@ -28,18 +35,14 @@
         <div class="items">
           <button id="buySword">Buy Sword Upgrade $50</button>
         </div>
-        <button id="return">return</button>
+        <button class="return">return</button>
       </div>
-      
-
     </div>
 
     <div class="invetory">
       <p id="money">Money: $0</p>
-      <p id="meats">You now own 0 meats.</p>
+      <p id="beef">You now own 0 beef.</p>
       <p id="swords"></p>
-
     </div>
-
   </div>
 </body>

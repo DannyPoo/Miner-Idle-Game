@@ -1,57 +1,58 @@
 $(document).ready(function () {
 
   //intialize variables
-  var meats = 0;
+  var beef = 0;
   var swords = 0;
   var money = 0;
-  var meatPlus = 1;
-  var autoMeatsPlus = 0;
+  var beefPlus = 1;
+  var autobeefPlus = 0;
   var autoAttackerPrice = 100;
   var swordPrice = 50;
-  var meatsPrice = 1;
+  var beefPrice = 1;
   var menu;
-  var autoMeatsPlusUpgCost = 100;
+  var autobeefPlusUpgCost = 100;
   var totalSwordUpgrades = 8;
   var clickAttack = 1;
-  var totalMeats = 0;
+  var totalbeef = 0;
   var isDone = false;
   var inflationNum = 100;
   var autoSellPrice = 100;
   var isUpgraded = false;
+  var isMonsterUnlocked = true;
 
 
-  // gives 1 meat every second per each minion
+  // gives 1 beef every second per each minion
   setInterval(function () {
-    if (autoMeatsPlus > 0 && !isUpgraded) {
-      checkTotalMeats(totalMeats, totalMeats + meatPlus);
-      meats += autoMeatsPlus;
-      totalMeats += autoMeatsPlus;
+    if (autobeefPlus > 0 && !isUpgraded) {
+      checkTotalbeef(totalbeef, totalbeef + beefPlus);
+      beef += autobeefPlus;
+      totalbeef += autobeefPlus;
       updateInventory();
       updateMarket();
-      console.log(totalMeats);
+      console.log(totalbeef);
     }
-    else if (autoMeatsPlus > 0) {
-      checkTotalMeats(totalMeats, totalMeats + meatPlus);
-      money += autoMeatsPlus;
-      totalMeats += autoMeatsPlus;
+    else if (autobeefPlus > 0) {
+      checkTotalbeef(totalbeef, totalbeef + beefPlus);
+      money += autobeefPlus;
+      totalbeef += autobeefPlus;
       updateInventory();
       updateMarket();
-      console.log(totalMeats);
+      console.log(totalbeef);
     }
   }, 1000);
 
-  function checkTotalMeats(pretotalMeats, postTotalMeats) {
-    if (pretotalMeats < inflationNum && postTotalMeats >= inflationNum) {
-      meatsPrice /= 2;
-      console.log(meatsPrice);
+  function checkTotalbeef(pretotalbeef, postTotalbeef) {
+    if (pretotalbeef < inflationNum && postTotalbeef >= inflationNum) {
+      beefPrice /= 2;
+      console.log(beefPrice);
     }
   }
 
-  //Attacks and gives you meat.
-  $("#attack").click(function () {
-    checkTotalMeats(totalMeats, totalMeats + meatPlus);
-    meats += meatPlus;
-    totalMeats += meatPlus;
+  //Attacks and gives you beef.
+  $("#attackcow").click(function () {
+    checkTotalbeef(totalbeef, totalbeef + beefPlus);
+    beef += beefPlus;
+    totalbeef += beefPlus;
     updateInventory();
     updateMarket();
     updateAttack();
@@ -60,22 +61,22 @@ $(document).ready(function () {
 
   // Sell functions
   $("#sell1").click(function () {
-    meats--;
-    money += meatsPrice;
+    beef--;
+    money += beefPrice;
     updateInventory();
     updateMarket();
   });
 
   $("#sell10").click(function () {
-    meats -= 10;
-    money += meatsPrice * 10;
+    beef -= 10;
+    money += beefPrice * 10;
     updateInventory();
     updateMarket();
   });
 
   $("#sellAll").click(function () {
-    money += meatsPrice * meats;
-    meats = 0;
+    money += beefPrice * beef;
+    beef = 0;
     updateInventory();
     updateMarket();
   });
@@ -84,7 +85,7 @@ $(document).ready(function () {
   $("#autoAttacker").click(function () {
     if (money >= autoAttackerPrice) {
       money -= autoAttackerPrice;
-      autoMeatsPlus++;
+      autobeefPlus++;
       autoAttackerPrice *= 4;
       updateInventory();
       updateMarket();
@@ -107,25 +108,28 @@ $(document).ready(function () {
     }
   });
 
-
+  $("#monsters").click(function () {
+    menu = switchMenu("monsterden");
+    updateMonsterDen();
+  });
   // visit marketplace and return to main menu functions
   $("#visit").click(function () {
     menu = switchMenu("marketplace");
     updateMarket();
   });
 
-  $("#return").click(function () {
+  $(".return").click(function () {
     menu = switchMenu("main");
     document.getElementById("moneys").innerHTML = "";
   });
 
   // add upgrade functionality to minion, doesnt work atm
   $("#upgradeMinion").click(function () {
-    if (money >= autoMeatsPlusUpgCost) {
-      money -= autoMeatsPlusUpgCost;
-      autoMeatsPlus *= 2;
-      autoMeatsPlusUpgCost *= 4;
-      $("#upgradeMinion").html("Buy minion upgrade $ " + autoMeatsPlusUpgCost);
+    if (money >= autobeefPlusUpgCost) {
+      money -= autobeefPlusUpgCost;
+      autobeefPlus *= 2;
+      autobeefPlusUpgCost *= 4;
+      $("#upgradeMinion").html("Buy minion upgrade $ " + autobeefPlusUpgCost);
     }
   });
 
@@ -143,10 +147,10 @@ $(document).ready(function () {
   function updateInventory() {
     $("#money").html("Money: $" + money);
 
-    if (meats == 1) {
-      $("#meats").html("You now own " + meats + " meats.");
+    if (beef == 1) {
+      $("#beef").html("You now own " + beef + " beef.");
     } else {
-      $("#meats").html("You now own " + meats + " meats.");
+      $("#beef").html("You now own " + beef + " beef.");
     }
     if (swords == 1) {
       $("#swords").html("You now own a bronze sword.");
@@ -180,9 +184,9 @@ $(document).ready(function () {
   //Updates attack based on achievement level.
 
   function updateAttack() {
-    if (!isDone && totalMeats > 500) {
+    if (!isDone && totalbeef > 500) {
       clickAttack += 5;
-      console.log(meatPlus)
+      console.log(beefPlus)
       isDone = true;
     }
     else {
@@ -193,23 +197,30 @@ $(document).ready(function () {
   function updateSword() {
     var pow = 2;
     pow = pow++;
-    meatPlus = Math.pow(swords + 1 + clickAttack, pow);
-    console.log(meatPlus);
+    beefPlus = Math.pow(swords + 1 + clickAttack, pow);
+    console.log(beefPlus);
   }
 
+  function updateMonsterDen() {
+    if (isMonsterUnlocked = true) {
+      $("#attackchicken").show();
+    } else { 
+      $("#attackchicken").hide();
+    }
+  }
   //Updates market
   function updateMarket() {
-    if (meats > 0) {
+    if (beef > 0) {
       $("#sellAll").css("display", "inline-block");
     } else {
       $("#sellAll").css("display", "none");
     }
-    if (meats >= 1) {
+    if (beef >= 1) {
       $("#sell1").css("display", "inline-block");
     } else {
       $("#sell1").css("display", "none");
     }
-    if (meats >= 10) {
+    if (beef >= 10) {
       $("#sell10").css("display", "inline-block");
     } else {
       $("#sell10").css("display", "none");
@@ -226,12 +237,12 @@ $(document).ready(function () {
     } else {
       $("#buySword").css("display", "none");
     }
-    if (money >= autoMeatsPlusUpgCost && autoMeatsPlus > 0) {
+    if (money >= autobeefPlusUpgCost && autobeefPlus > 0) {
       $("#upgradeMinion").css({ "display": "block", "background-color": "white" });
     } else {
       $("#upgradeMinion").css("background-color", "grey");
     }
-    if (money >= autoSellPrice && autoMeatsPlus > 0) {
+    if (money >= autoSellPrice && autobeefPlus > 0) {
       $("#autoSellUpgrade").css({ "display": "block", "background-color": "white" });
     } else {
       $("#autoSellUpgrade").css("background-color", "grey");
