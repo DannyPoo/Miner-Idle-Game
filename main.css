@@ -7,7 +7,13 @@
 .marketplace{
   display: none;
 }
-
+.monsterden{
+  display: none;
+}
+#attackchicken{
+  display: none;
+  visibility: hidden;
+}
 button{
   display: inline-block;
   background-color: #7b38d8;
@@ -28,3 +34,9 @@ button{
 button:hover{
   background-color: green;
 }
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
