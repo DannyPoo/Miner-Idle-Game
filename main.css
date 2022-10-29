@@ -10,7 +10,7 @@
 .monsterden{
   display: none;
 }
-*{
+* {
   touch-action: manipulation;
 }
 #attackchicken{
