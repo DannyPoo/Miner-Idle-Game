@@ -10,12 +10,14 @@
 .monsterden{
   display: none;
 }
+*{
+  touch-action: manipulation;
+}
 #attackchicken{
   display: none;
   visibility: hidden;
 }
 button{
-  touch-action: manipulation;
   display: inline-block;
   background-color: #7b38d8;
   border-radius: 10px;
