@@ -20,6 +20,8 @@ var gameData = {
     lastTick: Date.now()
 }
 
+let mineralsMined = 0;
+
 function update(id, content){
     document.getElementById(id).innerHTML = content;
 }
@@ -28,6 +30,9 @@ function mineMineral(mineralType){
     const mineral = gameData.minerals[mineralType];
     console.log(mineralType);
     mineral.quantity += mineral.perClick;
+    mineralsMined++;
+    checkAchievements(mineralsMined);
+    console.log(mineralsMined);
     update(mineralType + "Mined", format(mineral.quantity, "scientific") + " " + mineralType + " Mined");
 }
 
