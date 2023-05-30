@@ -102,10 +102,6 @@ function checkMaterialUnlock(mineralType) {
   function unlockMaterial(mineralType) {
     const mineral = gameData.minerals[mineralType];
     
-    mineral.quantity = 0;
-    mineral.perClick = 1;
-    mineral.perClickCost = 50;
-    
     update(
       mineralType + "Mined",
       format(mineral.quantity, "scientific") + " " + mineralType + " Mined"
