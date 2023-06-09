@@ -18,6 +18,8 @@ class Achievement {
 
 
 let achievements = [
+
+  //Coal Related Achievements
   new Achievement(
     "Mine 100 coal", 
     "Mine 100 coal for the first time",
@@ -31,12 +33,41 @@ let achievements = [
      () => applyProductionBoost()
   ),
   new Achievement(
+    "Mine 5000 coal", 
+    "Mine 5000 coal for the first time",
+     () => gameData.minerals.coal.quantity >= 5000, 
+     () => applyProductionBoost()
+  ),
+
+  //Unlock Material Achievements
+  new Achievement(
     "Unlock gold", 
     "Unlock gold for the first time",
      () => gameData.minerals.coal.perClick >= 10, 
      () => applyProductionBoost(1.5)
   ),
 
+  //Gold Related Achievements
+  new Achievement(
+    "Mine 250 gold", 
+    "Mine 250 gold for the first time",
+     () => gameData.minerals.gold.quantity >= 250, 
+     () => applyProductionBoost()
+  ),
+  new Achievement(
+    "Mine 2500 gold", 
+    "Mine 2500 gold for the first time",
+     () => gameData.minerals.gold.quantity >= 2500, 
+     () => applyProductionBoost()
+  ),
+  new Achievement(
+    "Mine 10000 gold", 
+    "Mine 10000 gold for the first time",
+     () => gameData.minerals.gold.quantity >= 10000, 
+     () => applyProductionBoost()
+  ),
+
+  // and so on...
 ];
 
 
