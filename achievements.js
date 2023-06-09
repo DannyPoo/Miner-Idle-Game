@@ -21,21 +21,39 @@ let achievements = [
 
   //Coal Related Achievements
   new Achievement(
-    "Mine 100 coal", 
-    "Mine 100 coal for the first time",
-     () => gameData.minerals.coal.quantity >= 100, 
+    "The Journey has started", 
+    "Mine 1 coal for the first time",
+     () => gameData.minerals.coal.totalMined >= 1, 
      () => applyProductionBoost()
   ),
   new Achievement(
-    "Mine 1000 coal", 
-    "Mine 1000 coal for the first time",
-     () => gameData.minerals.coal.quantity >= 1000, 
+    "Coal Newbie", 
+    "Mine 1,000 coal for the first time",
+     () => gameData.minerals.coal.totalMined >= 1000, 
      () => applyProductionBoost()
   ),
   new Achievement(
-    "Mine 5000 coal", 
-    "Mine 5000 coal for the first time",
-     () => gameData.minerals.coal.quantity >= 5000, 
+    "Coal Amaeteur", 
+    "Mine 10,000 coal for the first time",
+     () => gameData.minerals.coal.totalMined >= 10000, 
+     () => applyProductionBoost()
+  ),
+  new Achievement(
+    "Just another Coal Miner", 
+    "Mine 100,000 coal for the first time",
+     () => gameData.minerals.coal.totalMined >= 100000, 
+     () => applyProductionBoost()
+  ),
+  new Achievement(
+    "Level 99 Mining", 
+    "Amount of coal to hit level 99 mining!",
+     () => gameData.minerals.coal.totalMined >= 260689, 
+     () => applyProductionBoost()
+  ),
+  new Achievement(
+    "Coal Baron", 
+    "Mine 1,000,000 coal for the first time",
+     () => gameData.minerals.coal.totalMined >= 1000000, 
      () => applyProductionBoost()
   ),
 
@@ -43,29 +61,57 @@ let achievements = [
   new Achievement(
     "Unlock gold", 
     "Unlock gold for the first time",
-     () => gameData.minerals.coal.perClick >= 10, 
+     () => gameData.minerals.coal.totalMined >= 10, 
+     () => applyProductionBoost(1.5)
+  ),
+
+  new Achievement(
+    "Unlock iron", 
+    "Unlock iron for the first time",
+     () => gameData.minerals.coal.perClick >= 25 && gameData.minerals.gold.perClick >= 10, 
      () => applyProductionBoost(1.5)
   ),
 
   //Gold Related Achievements
   new Achievement(
+    "We've struck gold!", 
+    "Mined gold for the first time!",
+     () => gameData.minerals.gold.totalMined >= 1, 
+     () => applyProductionBoost()
+  ),
+  new Achievement(
     "Mine 250 gold", 
     "Mine 250 gold for the first time",
-     () => gameData.minerals.gold.quantity >= 250, 
+     () => gameData.minerals.gold.totalMined >= 2500, 
      () => applyProductionBoost()
   ),
   new Achievement(
     "Mine 2500 gold", 
-    "Mine 2500 gold for the first time",
-     () => gameData.minerals.gold.quantity >= 2500, 
+    "Mine 2,500 gold for the first time",
+     () => gameData.minerals.gold.totalMined >= 25000, 
      () => applyProductionBoost()
   ),
   new Achievement(
-    "Mine 10000 gold", 
-    "Mine 10000 gold for the first time",
-     () => gameData.minerals.gold.quantity >= 10000, 
+    "Mine 250000 gold", 
+    "Mine 250,000 gold for the first time",
+     () => gameData.minerals.gold.totalMined >= 250000, 
      () => applyProductionBoost()
   ),
+  new Achievement(
+    "Level 99 Mining", 
+    "Amount of gold to hit level 99 mining!",
+     () => gameData.minerals.gold.totalMined >= 200530, 
+     () => applyProductionBoost()
+  ),
+
+  new Achievement(
+    "We are rich!", 
+    "Have 100,000 current gold!",
+     () => gameData.minerals.gold.quantity >= 100000, 
+     () => applyProductionBoost()
+  ),
+
+  //Iron Related Achievements
 
   // and so on...
 ];
