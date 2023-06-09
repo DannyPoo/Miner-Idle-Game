@@ -31,8 +31,8 @@ function mineMineral(mineralType){
     console.log(mineralType);
     mineral.quantity += mineral.perClick;
     mineralsMined++;
-    checkAchievements(mineralsMined);
-    console.log(mineralsMined);
+    checkAchievements();
+    console.log(mineral.perClick);
     update(mineralType + "Mined", format(mineral.quantity, "scientific") + " " + mineralType + " Mined");
 }
 
@@ -154,6 +154,12 @@ function checkMaterialUnlock(mineralType) {
     const mineralContainer = document.getElementById(mineralType + "Container");
     return mineralContainer.style.display !== "none";
   }
+
+function checkAchievements(){
+  achievements.forEach((achievement) => {
+    achievement.tryUnlock();
+  })
+}
 
 var saveGameLoop = window.setInterval(function(){
     localStorage.setItem("minerSave", JSON.stringify(gameData))
