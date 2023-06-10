@@ -11,9 +11,22 @@ class Achievement {
     if(!this.isUnlocked && this.checkCondition()){
       this.isUnlocked = true;
       this.reward();
-      console.log(`${this.name} has been unlocked! ${this.description}`);
+      showAchievementPopup(this.name, this.description);
     }
   }
+}
+
+function showAchievementPopup(name, description){
+  document.getElementById("achievementName").textContent = name;
+  document.getElementById("achievementDescription").textContent = description;
+
+  document.getElementById("achievementPopup").style.display = "block";
+  
+  setTimeout(hideAchievementPopup, 3000);
+}
+
+function hideAchievementPopup(){
+  document.getElementById("achievementPopup").style.display = "none";
 }
 
 
@@ -61,7 +74,7 @@ let achievements = [
   new Achievement(
     "Unlock gold", 
     "Unlock gold for the first time",
-     () => gameData.minerals.coal.totalMined >= 10, 
+     () => gameData.minerals.coal.perClick >= 10, 
      () => applyProductionBoost(1.5)
   ),
 
