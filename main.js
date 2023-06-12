@@ -23,7 +23,7 @@ var gameData = {
     lastTick: Date.now()
 }
 
-
+let timePlayed = 0;
 function update(id, content){
     document.getElementById(id).innerHTML = content;
 }
@@ -132,6 +132,9 @@ function checkMaterialUnlock(mineralType) {
     var currentTime = Date.now();
     var diff = currentTime - gameData.lastTick;
     gameData.lastTick = currentTime;
+
+    timePlayed += diff / 1000 / 3600;
+    update("timePlayed", "Time Played: " + timePlayed.toFixed(2) + " hours") 
   
     for (let mineralType in gameData.minerals) {
       const mineral = gameData.minerals[mineralType];
@@ -146,6 +149,8 @@ function checkMaterialUnlock(mineralType) {
         );
       }
     }
+
+    checkAchievements();
   }, 1000);
   
   function isMineralUnlocked(mineralType) {

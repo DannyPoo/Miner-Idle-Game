@@ -11,4 +11,50 @@
     display: none;
     size:20px;
   }
+  .achievement-card {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    width: 150px;
+    height: 100px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    overflow: hidden; /* Add overflow property to hide overflowing content */
+    position: relative; /* Add position property for absolute positioning of text elements */
+  }
+  
+  .achievement-card h3,
+  .achievement-card p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .achievement-card h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .achievement-card p {
+    font-size: 14px;
+    line-height: 1.2;
+    height: 45px; /* Add height property to limit the height of the description */
+    overflow: hidden; /* Add overflow property to hide overflowing content */
+  }
+  
+  .achievement-status {
+    font-weight: bold;
+    position: absolute; /* Add position property for absolute positioning */
+    bottom: 10px; /* Adjust the position from the bottom */
+    left: 10px; /* Adjust the position from the left */
+    width: 100%; /* Set width to take the full width of the achievement card */
+  }
+  .achievement-card.unlocked {
+    background-color: green;
+    color: white;
+  }
+  
+  
   

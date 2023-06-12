@@ -10,6 +10,7 @@ class Achievement {
   tryUnlock(){
     if(!this.isUnlocked && this.checkCondition()){
       this.isUnlocked = true;
+      displayAchievements();
       this.reward();
       showAchievementPopup(this.name, this.description);
     }
@@ -138,4 +139,50 @@ let achievements = [
     }
   }
   
+
+
+  // Get the container element for the achievement grid
+const achievementGrid = document.getElementById("achievementGrid");
+
+// Function to generate HTML for an achievement card
+function createAchievementCard(achievement) {
+  const card = document.createElement("div");
+  card.classList.add("achievement-card");
+  
+  if (achievement.isUnlocked) {
+    card.classList.add("unlocked"); // Apply "unlocked" class to change the color
+  }
+  
+  card.innerHTML = `
+    <h3>${achievement.name}</h3>
+    <p>${achievement.description}</p>
+    <span class="achievement-status">${achievement.isUnlocked ? "Unlocked" : "Locked"}</span>
+  `;
+  return card;
+}
+
+
+function displayAchievements() {
+  // Sort achievements based on unlocked status
+  achievements.sort((a, b) => {
+    if (a.isUnlocked && !b.isUnlocked) {
+      return -1; // a comes before b
+    } else if (!a.isUnlocked && b.isUnlocked) {
+      return 1; // b comes before a
+    }
+    return 0; // no change in order
+  });
+
+  // Clear the existing grid
+  achievementGrid.innerHTML = "";
+
+  // Generate and append HTML for each achievement
+  for (const achievement of achievements) {
+    const card = createAchievementCard(achievement);
+    achievementGrid.appendChild(card);
+  }
+}
+
+// Call the function to display achievements initially
+displayAchievements();
   
