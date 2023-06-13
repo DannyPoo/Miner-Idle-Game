@@ -17,6 +17,13 @@ var gameData = {
             totalMined: 0,
             perClick: 1,
             perclickCost: 100
+        },
+        steel:{
+          quantity : 0,
+          totalMined: 0,
+          perClick: 1,
+          perclickCost: 100
+
         }
     },
 
@@ -26,6 +33,19 @@ var gameData = {
 let timePlayed = 0;
 function update(id, content){
     document.getElementById(id).innerHTML = content;
+}
+
+function smeltSteel(){
+  const iron = gameData.minerals.iron;
+  const coal = gameData.minerals.coal;
+  const steel = gameData.minerals.steel;
+
+
+  if(iron.quantity >= 10 && coal.quantity >= 20){
+    iron.quantity -= 10;
+    steel.quantity += 1;
+    steel.totalMined +=1;
+  }
 }
 
 function mineMineral(mineralType){
@@ -64,6 +84,9 @@ function buyPerClickUpgrade(mineralType){
           else if(mineralType == "gold"){
             checkMaterialUnlock("iron");
           }
+          else if(mineralType == "iron"){
+            checkMaterialUnlock("steel");
+          }
           
     }
 }
@@ -99,6 +122,9 @@ function checkMaterialUnlock(mineralType) {
       ) {
         unlockMaterial(mineralType);
       }
+    }
+    if(mineralType == "steel"){
+      unlockMaterial(mineralType);
     }
   }
   
