@@ -2,16 +2,19 @@ var gameData = {
     minerals: {
         coal: {
             quantity: 0,
+            totalMined: 0,
             perClick: 1,
             perClickCost: 10,
         },
         gold: {
             quantity : 0,
+            totalMined: 0,
             perClick: 1,
             perClickCost: 50,
         },
         iron: {
             quantity : 0,
+            totalMined: 0,
             perClick: 1,
             perclickCost: 100
         }
@@ -20,6 +23,7 @@ var gameData = {
     lastTick: Date.now()
 }
 
+let timePlayed = 0;
 function update(id, content){
     document.getElementById(id).innerHTML = content;
 }
@@ -28,6 +32,8 @@ function mineMineral(mineralType){
     const mineral = gameData.minerals[mineralType];
     console.log(mineralType);
     mineral.quantity += mineral.perClick;
+    mineral.totalMined += mineral.perClick;
+    checkAchievements();
     update(mineralType + "Mined", format(mineral.quantity, "scientific") + " " + mineralType + " Mined");
 }
 
@@ -126,6 +132,9 @@ function checkMaterialUnlock(mineralType) {
     var currentTime = Date.now();
     var diff = currentTime - gameData.lastTick;
     gameData.lastTick = currentTime;
+
+    timePlayed += diff / 1000 / 3600;
+    update("timePlayed", "Time Played: " + timePlayed.toFixed(2) + " hours") 
   
     for (let mineralType in gameData.minerals) {
       const mineral = gameData.minerals[mineralType];
@@ -133,12 +142,15 @@ function checkMaterialUnlock(mineralType) {
       // Check if the mineral is unlocked before updating its quantity
       if (isMineralUnlocked(mineralType)) {
         mineral.quantity += mineral.perClick * (diff / 1000);
+        mineral.totalMined += mineral.perClick * (diff / 1000);
         update(
           mineralType + "Mined",
           format(mineral.quantity, "scientific") + " " + mineralType + " Mined"
         );
       }
     }
+
+    checkAchievements();
   }, 1000);
   
   function isMineralUnlocked(mineralType) {
@@ -149,6 +161,12 @@ function checkMaterialUnlock(mineralType) {
     const mineralContainer = document.getElementById(mineralType + "Container");
     return mineralContainer.style.display !== "none";
   }
+
+function checkAchievements(){
+  achievements.forEach((achievement) => {
+    achievement.tryUnlock();
+  })
+}
 
 var saveGameLoop = window.setInterval(function(){
     localStorage.setItem("minerSave", JSON.stringify(gameData))
