@@ -107,11 +107,14 @@ function checkMaterialUnlock(mineralType) {
   
       const prerequisiteMineral = gameData.minerals[prerequisiteType];
       const prerequisiteMineral2 = prerequisiteType2 ? gameData.minerals[prerequisiteType2] : null;
+
+      console.log(materialData);
   
       if (
         prerequisiteMineral.perClick >= prerequisiteLevel &&
         (!prerequisiteMineral2 || prerequisiteMineral2.perClick >= prerequisiteLevel2)
       ) {
+        console.log(mineralType);
         unlockMaterial(mineralType);
       }
     }
