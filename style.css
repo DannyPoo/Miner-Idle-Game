@@ -78,3 +78,45 @@
   right: 0;
   bottom: 0;
 }
+
+#mineGoldBtn {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-image: url("gold.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-color: transparent;
+  cursor: pointer; /* Add cursor property to change the mouse cursor on hover */
+}
+
+#mineGoldBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#mineIronBtn {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-image: url("iron.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-color: transparent;
+  cursor: pointer; /* Add cursor property to change the mouse cursor on hover */
+}
+
+#mineIronBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
