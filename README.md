@@ -39,7 +39,7 @@ Once you have amassed a substantial amount of currency, you can choose to presti
 Mining Idle Game features a wide range of achievements to unlock. Achievements are earned by meeting specific criteria or reaching milestones within the game. Keep mining, upgrading, and prestiging to unlock all achievements and showcase your mining prowess!
 
 ## Feedback 
-We value your feedback! If you have any suggestions, bug reports, or general feedback, please don't hesitate to reach out. You can contact us at [email address] or visit our official website [website URL].
+We value your feedback! If you have any suggestions, bug reports, or general feedback, please don't hesitate to reach out. You can contact us at ...
 
 ## Contributing 
 We welcome contributions to Mining Idle Game. If you have ideas for new features, improvements, or bug fixes, please submit a pull request on our GitHub repository. We appreciate your support!
