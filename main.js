@@ -3,12 +3,14 @@ var gameData = {
         coal: {
             quantity: 0,
             totalMined: 0,
+            level: 1,
             perClick: 1,
             perClickCost: 10,
         },
         gold: {
             quantity : 0,
             totalMined: 0,
+            level: 1,
             perClick: 1,
             perClickCost: 50,
         },
@@ -16,6 +18,7 @@ var gameData = {
             quantity : 0,
             totalMined: 0,
             perClick: 1,
+            level: 1,
             perclickCost: 75
         }
     },
@@ -45,6 +48,7 @@ function buyPerClickUpgrade(mineralType){
         mineral.quantity -= mineral.perClickCost;
         mineral.perClick += 1;
         mineral.perClickCost *= 1.1;
+        mineral.level += 1;
         update(
             mineralType + "Mined",
             format(mineral.quantity, "scientific") + " " + mineralType + " Mined"
@@ -52,7 +56,7 @@ function buyPerClickUpgrade(mineralType){
           update( "buy" + mineralType +
             "PerClickBtn",
             "Upgrade Pickaxe (Currently Level " +
-              format(mineral.perClick, "scientific") +
+              format(mineral.level, null) +
               " ) Cost: " +
               format(mineral.perClickCost, "scientific") +
               " " +
@@ -127,7 +131,7 @@ function checkMaterialUnlock(mineralType) {
     update(
       "buy" + mineralType + "PerClickBtn",
       "Upgrade Pickaxe (Currently Level " +
-      format(mineral.perClick, "scientific") +
+      format(mineral.level, null) +
       " ) Cost: " +
       format(mineral.perClickCost, "scientific") +
       " " +
@@ -146,7 +150,7 @@ function checkMaterialUnlock(mineralType) {
 
     timePlayed += diff / 1000 / 3600;
     update("timePlayed", "Time Played: " + timePlayed.toFixed(2) + " hours") 
-  
+  console.log(gameData.minerals.coal.perClick);
     for (let mineralType in gameData.minerals) {
       const mineral = gameData.minerals[mineralType];
   
@@ -184,10 +188,22 @@ var saveGameLoop = window.setInterval(function(){
     localStorage.setItem("minerSave", JSON.stringify(gameData))
 }, 15000)
 
-function format(number, type){
-    let exponent = Math.floor(Math.log10(number))
-    let mantissa = number / Math.pow(10, exponent)
-    if(exponent < 3) return number.toFixed(1)
-    if(type == "scientific") return mantissa.toFixed(2) + "e" + exponent
-    if(type == "engineering") return (Math.pow(10, exponent % 3) * mantissa).toFixed(2) + "e" + (Math.floor(exponent /3) * 3)
+function format(number, type) {
+  let exponent = Math.floor(Math.log10(number));
+  let mantissa = number / Math.pow(10, exponent);
+
+  if (exponent < 3) {
+    return number.toFixed(1);
+  }
+
+  if (type == "scientific" && number >= 10000000) {
+    return mantissa.toFixed(2) + "e" + exponent;
+  }
+
+  if (type == "engineering" && number >= 10000000) {
+    return (Math.pow(10, exponent % 3) * mantissa).toFixed(2) + "e" + (Math.floor(exponent / 3) * 3);
+  }
+
+  return number.toFixed(1);
 }
+
