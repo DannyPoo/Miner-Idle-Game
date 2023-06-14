@@ -19,7 +19,7 @@ var gameData = {
             totalMined: 0,
             level: 1,
             perClick: 1,
-            perclickCost: 75
+            perClickCost: 75
         }
     },
     prestigeCurrency :0,
@@ -125,20 +125,20 @@ function checkMaterialUnlock(mineralType) {
 
   function unlockMaterial(mineralType) {
     const mineral = gameData.minerals[mineralType];
-    
+  
     update(
       mineralType + "Mined",
       format(mineral.quantity, "scientific") + " " + mineralType + " Mined"
     );
-    
+  
     update(
       "buy" + mineralType + "PerClickBtn",
       "Upgrade Pickaxe (Currently Level " +
-      format(mineral.level, "scientific") +
-      " ) Cost: " +
-      format(mineral.perClickCost, "scientific") +
-      " " +
-      mineralType
+        format(mineral.level, "engineering") +
+        " ) Cost: " +
+        format(mineral.perClickCost, "scientific") +
+        " " +
+        mineralType
     );
     
     // Show the material container
