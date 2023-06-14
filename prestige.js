@@ -1,3 +1,20 @@
+class Upgrade{
+    constructor(name, cost, effect){
+        this.name = name;
+        this.cost = cost;
+        this.effect = effect;
+        this.purchased = false;
+    }
+
+    purchase(){
+        if(prestigeCurrency >= this.cost){
+            prestigeCurrency -= this.cost;
+            this.purchased = true;
+        }
+    }
+}
+
+
 function calculatePrestigeCurrency(){
     const totalMaterialMined = HowMuchTotalMined();
     const prestigeCurrency = Math.floor(totalMaterialMined / 1000);
@@ -12,11 +29,24 @@ function prestige(){
 
     resetGameData();
 
-    switchScreens();
+    for(let mineral in gameData.minerals){
+    gameData.minerals[mineral].perClick += prestigeCurrency;
+    }
 
-    alert(`You now have ${gameData.prestigeCurrency} prestige points.`)
+    switchScreens();
 }
 
+function checkPrestige(){
+    var prestigeCurrency = calculatePrestigeCurrency();
+
+    if(prestigeCurrency >= 1){
+        showButton();
+    }
+}
+
+function showButton(){
+    document.getElementById("prestigeBtn").style.display = "block";
+}
 
 function switchScreens(){
     document.getElementById("statsScreen").style.display = "none";

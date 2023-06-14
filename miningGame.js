@@ -41,12 +41,25 @@ document.addEventListener("DOMContentLoaded", function() {
   // Add an event listener to the stats button to switch to the stats screen
   document.getElementById("statsBtn").addEventListener("click", function() {
     document.getElementById("miningScreen").style.display = "none";
+    document.getElementById("prestigeScreen").style.display = "none";
     document.getElementById("statsScreen").style.display = "block";
   });
   
   // Add an event listener to the back button to switch back to the mining screen
-  document.getElementById("backToMiningBtn").addEventListener("click", function() {
-    document.getElementById("statsScreen").style.display = "none";
-    document.getElementById("miningScreen").style.display = "block";
-  });
+  document.querySelectorAll(".backToMiningBtn").forEach(btn => {
+    btn.addEventListener("click", function() {
+      document.getElementById("statsScreen").style.display = "none";
+      document.getElementById("prestigeScreen").style.display = "none";
+      document.getElementById("miningScreen").style.display = "block";
+    });
 });
+
+
+  
+  document.getElementById("prestigeBtn").addEventListener("click", function(){
+    prestige();
+  })
+});
+document.getElementById("statsScreen").style.display = "none";
+document.getElementById("prestigeScreen").style.display = "none";
+document.getElementById("miningScreen").style.display = "block";

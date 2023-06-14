@@ -161,6 +161,7 @@ function checkMaterialUnlock(mineralType) {
       }
     }
 
+    checkPrestige();
     checkAchievements();
   }, 1000);
   
