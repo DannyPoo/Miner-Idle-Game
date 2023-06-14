@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
               1
             ).data;
             if (pixelData[3] !== 0) {
-              mineCoal();
+              mineMineral(mineralType);
             }
           };
 
