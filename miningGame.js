@@ -6,7 +6,30 @@ document.addEventListener("DOMContentLoaded", function() {
       const mineralType = target.getAttribute("data-mineral");
 
       if (target.id.startsWith("mine")) {
-        mineMineral(mineralType);
+        if (mineralType === "coal") {
+          const canvas = document.createElement("canvas");
+          canvas.width = target.offsetWidth;
+          canvas.height = target.offsetHeight;
+          const context = canvas.getContext("2d");
+          const image = new Image();
+          image.src = "coal.png";
+          image.crossOrigin = "Anonymous";
+          image.onload = function() {
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            const pixelData = context.getImageData(
+              event.offsetX,
+              event.offsetY,
+              1,
+              1
+            ).data;
+            if (pixelData[3] !== 0) {
+              mineCoal();
+            }
+          };
+
+        } else {
+          mineMineral(mineralType);
+        }
       }
 
       if (target.id.startsWith("buy")) {

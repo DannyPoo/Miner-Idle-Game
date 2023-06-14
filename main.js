@@ -19,6 +19,7 @@ var gameData = {
             perclickCost: 100
         }
     },
+    prestigeCurrency :0,
 
     lastTick: Date.now()
 }
@@ -66,6 +67,16 @@ function buyPerClickUpgrade(mineralType){
           }
           
     }
+}
+
+function HowMuchTotalMined(){
+  const totalCoalMined = gameData.minerals.coal.totalMined;
+  const totalIronMined = gameData.minerals.iron.totalMined;
+  const totalGoldMined = gameData.minerals.gold.totalMined;
+
+  const totalMaterialMined = totalCoalMined + totalGoldMined + totalIronMined;
+
+  return totalMaterialMined;
 }
 
 function checkMaterialUnlock(mineralType) {
