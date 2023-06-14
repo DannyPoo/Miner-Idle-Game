@@ -16,7 +16,7 @@ var gameData = {
             quantity : 0,
             totalMined: 0,
             perClick: 1,
-            perclickCost: 100
+            perclickCost: 75
         }
     },
     prestigeCurrency :0,
