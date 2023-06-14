@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
           canvas.height = target.offsetHeight;
           const context = canvas.getContext("2d");
           const image = new Image();
-          image.src = `sources/${mineralType}.png`;
+          image.src = `${mineralType}.png`;
           image.crossOrigin = "Anonymous";
           image.onload = function() {
             context.drawImage(image, 0, 0, canvas.width, canvas.height);
