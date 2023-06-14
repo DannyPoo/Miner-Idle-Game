@@ -2,14 +2,15 @@
 
 Welcome to Mining Idle Game, a thrilling idle game where you can become a master miner! Dig deep into the earth, mine valuable resources such as coal, iron, and gold, and unlock amazing upgrades and achievements. Get ready to click, upgrade, and prestige your way to mining greatness!
 
-## Table of Contents ##
-* [Gameplay](#gameplay)
-* [Features](#features)
-* Getting Started
-* Upgrades and Prestige
-* Achievements
-* Feedback
-* Contributing
+## Table of Contents
+
+- [Gameplay](#gameplay)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Upgrades and Prestige](#upgrades-and-prestige)
+- [Achievements](#achievements)
+- [Feedback](#feedback)
+- [Contributing](#contributing)
 
 
 ## Gameplay
