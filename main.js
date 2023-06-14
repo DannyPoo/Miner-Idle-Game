@@ -17,8 +17,8 @@ var gameData = {
         iron: {
             quantity : 0,
             totalMined: 0,
-            perClick: 1,
             level: 1,
+            perClick: 1,
             perclickCost: 75
         }
     },
@@ -134,7 +134,7 @@ function checkMaterialUnlock(mineralType) {
     update(
       "buy" + mineralType + "PerClickBtn",
       "Upgrade Pickaxe (Currently Level " +
-      format(mineral.level, null) +
+      format(mineral.level, "scientific") +
       " ) Cost: " +
       format(mineral.perClickCost, "scientific") +
       " " +
