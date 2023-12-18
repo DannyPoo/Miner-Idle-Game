@@ -42,7 +42,7 @@ function checkPrestige(){
     var prestigeCurrency = calculatePrestigeCurrency();
 
     if(prestigeCurrency >= 1){
-        showButton();
+        //showButton();
     }
 }
 
