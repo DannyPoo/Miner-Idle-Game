@@ -19,6 +19,7 @@ function calculatePrestigeCurrency(){
     const totalMaterialMined = HowMuchTotalMined();
     const prestigeCurrency = Math.floor(totalMaterialMined / 1000);
 
+    console.log(prestigeCurrency);
     return prestigeCurrency;
 }
 
@@ -28,6 +29,7 @@ function prestige(){
     gameData.prestigeCurrency += prestigeCurrency;
 
     resetGameData();
+    resetUI();
 
     for(let mineral in gameData.minerals){
     gameData.minerals[mineral].perClick += prestigeCurrency;
@@ -79,5 +81,10 @@ function resetGameData() {
         prestigeCurrency: gameData.prestigeCurrency, // Keep the prestigeCurrency value
         lastTick: Date.now()
     }
+}
+
+function resetUI(){
+    document.getElementById("goldContainer").style.display = "none";
+    document.getElementById("ironContainer").style.display = "none";
 }
   

@@ -69,6 +69,10 @@
   border-color: transparent;
   cursor: pointer; /* Add cursor property to change the mouse cursor on hover */
 }
+#mineCoalBtn:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
 
 #mineCoalBtn::before {
   content: "";
@@ -89,6 +93,11 @@
   background-size: contain;
   border-color: transparent;
   cursor: pointer; /* Add cursor property to change the mouse cursor on hover */
+}
+
+#mineGoldBtn:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
 #mineGoldBtn::before {
@@ -112,6 +121,11 @@
   cursor: pointer; /* Add cursor property to change the mouse cursor on hover */
 }
 
+#mineIronBtn:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
 #mineIronBtn::before {
   content: "";
   position: absolute;
@@ -120,3 +134,9 @@
   right: 0;
   bottom: 0;
 }
+
+/*body{
+  background-color: black;
+  color: #ffffff;
+}
+*/
