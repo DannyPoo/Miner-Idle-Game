@@ -2,6 +2,10 @@
 
 Welcome to Mining Idle Game, a thrilling idle game where you can become a master miner! Dig deep into the earth, mine valuable resources such as coal, iron, and gold, and unlock amazing upgrades and achievements. Get ready to click, upgrade, and prestige your way to mining greatness!
 
+## Where to play the game?
+  You can play the game on itch.io website. And there link for that is below:
+  https://pomelothereaper.itch.io/miner-the-clicker-game
+
 ## Table of Contents
 
 - [Gameplay](#gameplay)
