@@ -42,4 +42,4 @@ Mining Idle Game features a wide range of achievements to unlock. Achievements a
 We value your feedback! If you have any suggestions, bug reports, or general feedback, please don't hesitate to reach out. You can contact us at ...
 
 ## Contributing 
-We welcome contributions to Mining Idle Game. If you have ideas for new features, improvements, or bug fixes, please submit a pull request on our GitHub repository. We appreciate your support!
+We welcome contributions to Mining Idle Game. If you have ideas for new features, improvements, or bug fixes, please submit a bug report or feature request. We appreciate your support!
